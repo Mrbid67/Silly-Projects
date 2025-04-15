@@ -13,6 +13,10 @@ document.addEventListener("DOMContentLoaded", function () {
   const progressLabel = document.getElementById("progress-label");
   const workingDayCheckboxes = document.querySelectorAll(".working-day");
 
+  // New: Audio elements
+  const chimeSound = document.getElementById("chime-sound");
+  const soundToggle = document.getElementById("sound-enabled");
+
   // Currency mapping
   const currencySymbols = {
     EUR: "€",
@@ -54,6 +58,10 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   }
+  
+  // Load sound setting
+  const soundEnabled = localStorage.getItem("soundEnabled") === "true";
+  soundToggle.checked = soundEnabled;
 
   // Milestone settings: milestones to celebrate (in selected currency)
   const milestones = [10, 100, 1000];
@@ -210,102 +218,106 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Helper functions for milestone data in localStorage
-function getMilestoneData() {
-  const data = localStorage.getItem("milestoneData");
-  if (data) {
-    try {
-      return JSON.parse(data);
-    } catch (e) {
-      return { date: "", index: 0 };
+  function getMilestoneData() {
+    const data = localStorage.getItem("milestoneData");
+    if (data) {
+      try {
+        return JSON.parse(data);
+      } catch (e) {
+        return { date: "", index: 0 };
+      }
     }
+    return { date: "", index: 0 };
   }
-  return { date: "", index: 0 };
-}
 
-function saveMilestoneData(data) {
-  localStorage.setItem("milestoneData", JSON.stringify(data));
-}
+  function saveMilestoneData(data) {
+    localStorage.setItem("milestoneData", JSON.stringify(data));
+  }
 
-// At the start, load milestone data
-let milestoneData = getMilestoneData();
-const todayString = new Date().toDateString();
-// If the stored date isn’t today, reset the milestone index
-if (milestoneData.date !== todayString) {
-  milestoneData = { date: todayString, index: 0 };
-  saveMilestoneData(milestoneData);
-}
-
-// ... other code remains unchanged ...
-
-// In your updateDashboard function, update as follows:
-function updateDashboard() {
-  const now = new Date();
-  
-  // If a new day has started, reset milestoneData
-  if (now.toDateString() !== milestoneData.date) {
-    milestoneData = { date: now.toDateString(), index: 0 };
+  // At the start, load milestone data
+  let milestoneData = getMilestoneData();
+  const todayString = new Date().toDateString();
+  // If the stored date isn’t today, reset the milestone index
+  if (milestoneData.date !== todayString) {
+    milestoneData = { date: todayString, index: 0 };
     saveMilestoneData(milestoneData);
   }
 
-  const earnings = computeLiveEarnings();
-  const { workStart, workEnd } = getWorkStartAndEnd(now);
-  const symbol = getCurrencySymbol();
+  // Update the dashboard and check for milestones.
+  function updateDashboard() {
+    const now = new Date();
+    
+    // If a new day has started, reset milestoneData
+    if (now.toDateString() !== milestoneData.date) {
+      milestoneData = { date: now.toDateString(), index: 0 };
+      saveMilestoneData(milestoneData);
+    }
 
-  document.getElementById("per-second").textContent =
-    "💸 Earning per second: " + symbol + earnings.perSecond.toFixed(4);
-  document.getElementById("per-minute").textContent =
-    "💸 Earning per minute: " + symbol + earnings.perMinute.toFixed(2);
-  document.getElementById("per-hour").textContent =
-    "💸 Earning per hour: " + symbol + earnings.perHour.toFixed(2);
+    const earnings = computeLiveEarnings();
+    const { workStart, workEnd } = getWorkStartAndEnd(now);
+    const symbol = getCurrencySymbol();
 
-  document.getElementById("today").textContent =
-    "💰 Today: " + symbol + earnings.today.toFixed(2);
-  document.getElementById("week").textContent =
-    "💰 This Week: " + symbol + earnings.week.toFixed(2);
-  document.getElementById("month").textContent =
-    "💰 This Month: " + symbol + earnings.month.toFixed(2);
+    document.getElementById("per-second").textContent =
+      "💸 Earning per second: " + symbol + earnings.perSecond.toFixed(4);
+    document.getElementById("per-minute").textContent =
+      "💸 Earning per minute: " + symbol + earnings.perMinute.toFixed(2);
+    document.getElementById("per-hour").textContent =
+      "💸 Earning per hour: " + symbol + earnings.perHour.toFixed(2);
 
-  // Check milestone thresholds—use milestoneData.index so each threshold is triggered only once per day.
-  if (milestoneData.index < milestones.length && earnings.today >= milestones[milestoneData.index]) {
-    triggerConfetti();
-    milestoneData.index++;
-    saveMilestoneData(milestoneData);
-  }
+    document.getElementById("today").textContent =
+      "💰 Today: " + symbol + earnings.today.toFixed(2);
+    document.getElementById("week").textContent =
+      "💰 This Week: " + symbol + earnings.week.toFixed(2);
+    document.getElementById("month").textContent =
+      "💰 This Month: " + symbol + earnings.month.toFixed(2);
 
-  // Update Working Hours Indicator.
-  if (isWorkingDay(now) && now >= workStart && now <= workEnd) {
-    workingStatusEl.textContent = "Currently Working 🟢";
-    workingStatusEl.classList.remove("not-working");
-    workingStatusEl.classList.add("working");
-  } else {
-    workingStatusEl.textContent = "Currently Not Working 🔴";
-    workingStatusEl.classList.remove("working");
-    workingStatusEl.classList.add("not-working");
-  }
+    // Check milestone thresholds and trigger celebrations only once per day.
+    if (milestoneData.index < milestones.length && earnings.today >= milestones[milestoneData.index]) {
+      triggerConfetti();
+      
+      // Play chime if sound is enabled.
+      if (soundToggle.checked) {
+        chimeSound.currentTime = 0;
+        chimeSound.play();
+      }
 
-  // Update "Time Left in Workday" Progress Bar.
-  let progress = 0;
-  if (isWorkingDay(now)) {
-    if (now < workStart) {
-      progress = 0;
-      progressLabel.textContent = "Work day hasn't started";
-    } else if (now > workEnd) {
-      progress = 100;
-      progressLabel.textContent = "Work day finished";
+      milestoneData.index++;
+      saveMilestoneData(milestoneData);
+    }
+
+    // Update Working Hours Indicator.
+    if (isWorkingDay(now) && now >= workStart && now <= workEnd) {
+      workingStatusEl.textContent = "Currently Working 🟢";
+      workingStatusEl.classList.remove("not-working");
+      workingStatusEl.classList.add("working");
     } else {
-      progress = ((now - workStart) / (workEnd - workStart)) * 100;
-      let timeLeftMs = workEnd - now;
-      progressLabel.textContent = "Time left: " + formatTime(timeLeftMs);
+      workingStatusEl.textContent = "Currently Not Working 🔴";
+      workingStatusEl.classList.remove("working");
+      workingStatusEl.classList.add("not-working");
     }
-  } else {
-    progress = 0;
-    progressLabel.textContent = "Not a working day";
+
+    // Update "Time Left in Workday" Progress Bar.
+    let progress = 0;
+    if (isWorkingDay(now)) {
+      if (now < workStart) {
+        progress = 0;
+        progressLabel.textContent = "Work day hasn't started";
+      } else if (now > workEnd) {
+        progress = 100;
+        progressLabel.textContent = "Work day finished";
+      } else {
+        progress = ((now - workStart) / (workEnd - workStart)) * 100;
+        let timeLeftMs = workEnd - now;
+        progressLabel.textContent = "Time left: " + formatTime(timeLeftMs);
+      }
+    } else {
+      progress = 0;
+      progressLabel.textContent = "Not a working day";
+    }
+    workProgressEl.style.width = progress + "%";
   }
-  workProgressEl.style.width = progress + "%";
-}
 
-
-  // Update everything every second.
+  // Update dashboard and clock every second.
   setInterval(function () {
     updateDashboard();
     updateClock();
@@ -332,6 +344,8 @@ function updateDashboard() {
         }
       });
       localStorage.setItem("workingDays", JSON.stringify(selectedDays));
+      // Save sound setting
+      localStorage.setItem("soundEnabled", soundToggle.checked);
       settingsContainer.style.display = "none";
     }
   });

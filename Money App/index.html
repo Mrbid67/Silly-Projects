@@ -53,19 +53,49 @@
           </select>
         </div>
 
+        <!-- Updated Working Days Checkboxes -->
         <div class="form-group">
           <label>Working Days:</label>
           <div class="checkbox-group">
-            <label><input type="checkbox" class="working-day" value="1" checked> Monday</label>
-            <label><input type="checkbox" class="working-day" value="2" checked> Tuesday</label>
-            <label><input type="checkbox" class="working-day" value="3" checked> Wednesday</label>
-            <label><input type="checkbox" class="working-day" value="4" checked> Thursday</label>
-            <label><input type="checkbox" class="working-day" value="5" checked> Friday</label>
-            <label><input type="checkbox" class="working-day" value="6"> Saturday</label>
-            <label><input type="checkbox" class="working-day" value="0"> Sunday</label>
+            <label class="checkbox-container">Monday
+              <input type="checkbox" class="working-day" value="1" checked>
+              <span class="checkmark"></span>
+            </label>
+            <label class="checkbox-container">Tuesday
+              <input type="checkbox" class="working-day" value="2" checked>
+              <span class="checkmark"></span>
+            </label>
+            <label class="checkbox-container">Wednesday
+              <input type="checkbox" class="working-day" value="3" checked>
+              <span class="checkmark"></span>
+            </label>
+            <label class="checkbox-container">Thursday
+              <input type="checkbox" class="working-day" value="4" checked>
+              <span class="checkmark"></span>
+            </label>
+            <label class="checkbox-container">Friday
+              <input type="checkbox" class="working-day" value="5" checked>
+              <span class="checkmark"></span>
+            </label>
+            <label class="checkbox-container">Saturday
+              <input type="checkbox" class="working-day" value="6">
+              <span class="checkmark"></span>
+            </label>
+            <label class="checkbox-container">Sunday
+              <input type="checkbox" class="working-day" value="0">
+              <span class="checkmark"></span>
+            </label>
           </div>
         </div>
-        
+
+        <!-- Updated Audio Notification Toggle -->
+        <div class="form-group toggle-group">
+          <span>Enable sound for milestones 🔔</span>
+          <label class="toggle-switch">
+            <input type="checkbox" id="sound-enabled">
+            <span class="slider"></span>
+          </label>
+        </div>
       </div>
       <button id="updateSettings">Save Settings</button>
     </div>
@@ -83,6 +113,8 @@
       <a href="privacy.html" class="privacy-link">Privacy Policy</a>
     </footer>
   </div>
+  <!-- Audio element for milestone chime -->
+  <audio id="chime-sound" src="assets/chime.mp3" preload="auto"></audio>
   <script src="script.js"></script>
 </body>
 </html>
