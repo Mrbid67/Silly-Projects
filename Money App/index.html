@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Live Money Dashboard 💸</title>
+  <!-- Load custom Google Fonts: Poppins and Orbitron for the digital clock -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Orbitron:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <!-- Include canvas-confetti library -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3094468457315724"
+     crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="container">
+    <!-- Gear icon for settings toggle -->
+    <div class="gear-icon" id="gearIcon">⚙️</div>
+    <h1>💸 Live Money Dashboard 💸</h1>
+    <!-- Real-time clock display -->
+    <div id="clock" class="clock">00:00:00</div>
+    <!-- Working Hours Indicator (emoji version) -->
+    <div id="working-status" class="working-status not-working">🔴</div>
+    <!-- Time Left in Workday Progress Bar -->
+    <div class="progress-container">
+      <div id="work-progress" class="progress-bar"></div>
+      <span id="progress-label" class="progress-label"></span>
+    </div>    
+    
+    <!-- Settings container -->
+    <div class="settings" id="settings">
+      <div class="inputs">
+        <div class="form-group">
+          <label for="salary">Monthly Salary:</label>
+          <input type="number" id="salary" placeholder="Enter your monthly salary" step="0.01" />
+        </div>
+        <div class="form-group">
+          <label for="start-time">Work Start Time:</label>
+          <input type="time" id="start-time" value="09:00" />
+        </div>
+        <div class="form-group">
+          <label for="end-time">Work End Time:</label>
+          <input type="time" id="end-time" value="17:00" />
+        </div>
+        <div class="form-group">
+          <label for="currency">Currency:</label>
+          <select id="currency">
+            <option value="EUR">Euro (€)</option>
+            <option value="USD">US Dollar ($)</option>
+            <option value="GBP">British Pound (£)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Working Days:</label>
+          <div class="checkbox-group">
+            <label><input type="checkbox" class="working-day" value="1" checked> Monday</label>
+            <label><input type="checkbox" class="working-day" value="2" checked> Tuesday</label>
+            <label><input type="checkbox" class="working-day" value="3" checked> Wednesday</label>
+            <label><input type="checkbox" class="working-day" value="4" checked> Thursday</label>
+            <label><input type="checkbox" class="working-day" value="5" checked> Friday</label>
+            <label><input type="checkbox" class="working-day" value="6"> Saturday</label>
+            <label><input type="checkbox" class="working-day" value="0"> Sunday</label>
+          </div>
+        </div>
+        
+      </div>
+      <button id="updateSettings">Save Settings</button>
+    </div>
+    <!-- Statistics display with emojis and fun styling -->
+    <div class="stats">
+      <div id="today">💰 Today: €0</div>
+      <div id="week">💰 This Week: €0</div>
+      <div id="month">💰 This Month: €0</div>
+      <hr />
+      <div id="per-second">💸 Earning per second: €0</div>
+      <div id="per-minute">💸 Earning per minute: €0</div>
+      <div id="per-hour">💸 Earning per hour: €0</div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
