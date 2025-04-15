@@ -200,3 +200,15 @@ hr {
   from { opacity: 0; }
   to { opacity: 1; }
 }
+
+.privacy-link {
+  font-size: 0.9em;
+  color: var(--accent-color);
+  text-decoration: none;
+  margin-top: 10px;
+  display: inline-block;
+}
+
+.privacy-link:hover {
+  text-decoration: underline;
+}
