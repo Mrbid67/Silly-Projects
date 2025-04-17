@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daily Coffee Counter ☕</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Daily Coffee Counter ☕</h1>
+    <div id="count-display">0</div>
+    <div class="buttons">
+      <button id="add-btn">Add Coffee</button>
+      <button id="reset-btn">Reset</button>
+    </div>
+    <div class="cups" id="cups-container"></div>
+
+    <!-- Stats Dashboard -->
+    <div id="stats">
+      <div>Today: <span id="stats-today">0</span></div>
+      <div>This Week: <span id="stats-week">0</span></div>
+      <div>This Month: <span id="stats-month">0</span></div>
+    </div>
+    <!-- Time Since -->
+    <div id="time-since">Time since last coffee: N/A</div>
+    <!-- Fun Facts -->
+    <button id="new-fact-btn">New Fun Fact</button>
+    <div id="fun-fact"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
