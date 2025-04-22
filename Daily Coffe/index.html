@@ -1,47 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Daily Coffee Counter ☕</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daily Coffee Counter ☕</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-
 <body>
-    <div class="container">
-        <h1>☕ Daily Coffee Counter ☕</h1>
-        <div id="count-display">0</div>
-        <div class="buttons">
-            <button id="add-btn">Add Coffee</button>
-            <button id="remove-btn">Remove Coffee</button>
-            <button id="reset-btn">Reset</button>
-        </div>
-        <div class="cups" id="cups-container"></div>
+  <div class="container">
+    <h1>Daily Coffee Counter ☕</h1>
+    <div id="count-display">0</div>
+    <div class="buttons">
+      <button id="add-btn">Add Coffee</button>
+      <button id="remove-btn">Remove Coffee</button>
+      <button id="reset-btn">Reset</button>
+    </div>
+    <div class="cups" id="cups-container"></div>
 
-        <!-- Stats Dashboard -->
-        <div id="stats">
-            <div>Today: <span id="stats-today">0</span></div>
-            <div>This Week: <span id="stats-week">0</span></div>
-            <div>This Month: <span id="stats-month">0</span></div>
-            <br>
-        </div>
-        <br>
-
-        <!-- Time Since -->
-        <div id="time-since">Time since last coffee: N/A</div>
-        <br>
-
-        <!-- Fun Fact of the Day -->
-        <div id="fun-fact" class="fun-fact">Fun Fact of the Day</div>
-        <br>
-        <footer>
-            <a href="privacy.html" class="privacy-link">Privacy Policy</a>
-        </footer>
+    <!-- Stats Dashboard -->
+    <div id="stats">
+      <div>Today: <span id="stats-today">0</span></div>
+      <div>This Week: <span id="stats-week">0</span></div>
+      <div>This Month: <span id="stats-month">0</span></div>
     </div>
 
-    <script src="script.js"></script>
-</body>
+    <!-- Charts -->
+    <div class="charts">
+      <div class="chart-container">
+        <h2>Last 7 Days</h2>
+        <canvas id="weeklyChart"></canvas>
+      </div>
+      <div class="chart-container">
+        <h2>Last 30 Days</h2>
+        <canvas id="monthlyChart"></canvas>
+      </div>
+    </div>
 
+    <!-- Fun Stats -->
+    <div id="fun-stats">
+      <div>Longest Streak: <span id="streak">0</span> days</div>
+      <div>Favorite Day: <span id="favorite-day">N/A</span></div>
+    </div>
+
+    <!-- Time Since -->
+    <div id="time-since">Time since last coffee: N/A</div>
+    <!-- Fun Fact of the Day -->
+    <div id="fun-fact" class="fun-fact">Fun Fact of the Day</div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
 </html>

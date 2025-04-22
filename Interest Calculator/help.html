@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ayuda – Simulador de Interés Bancario</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>❓ Ayuda</h1>
+
+    <div class="stats" style="text-align:left;">
+      <h2>Cómo usar el simulador</h2>
+      <ol>
+        <li>
+          <strong>Importe principal</strong>: introduce el capital inicial que vas a invertir o ahorrar.
+        </li>
+        <li>
+          <strong>Tipo de interés anual (%)</strong>: escribe el porcentaje que te ofrece el banco (por ejemplo, <code>1.5</code> para 1.5 % anual).
+        </li>
+        <li>
+          <strong>Frecuencia de capitalización</strong>:
+          <ul>
+            <li><code>Diaria</code> (365): intereses calculados y añadidos cada día</li>
+            <li><code>Mensual</code> (12): cada mes</li>
+            <li><code>Trimestral</code> (4), <code>Semestral</code> (2) o <code>Anual</code> (1).</li>
+          </ul>
+        </li>
+        <li>
+          <strong>Aportación mensual</strong>: cantidad fija que añades cada mes al balance.
+        </li>
+        <li>
+          <strong>Periodo de simulación (años)</strong>: usa el slider para elegir de 1 a 10 años; el valor aparece a la derecha del label.
+        </li>
+      </ol>
+
+      <h2>Qué muestran las estadísticas</h2>
+      <ul>
+        <li><strong>Interés total</strong>: suma neta que obtienes en todo el periodo.</li>
+        <li><strong>Saldo final</strong>: capital inicial + aportaciones + todos los intereses.</li>
+        <li><strong>Interés anual/mes/día promedio</strong>: cuánto ganas de media por cada unidad de tiempo.</li>
+      </ul>
+
+      <h2>Gráfica de evolución</h2>
+      <p>
+        Se representan tres líneas:
+        <ul>
+          <li><strong>Saldo total acumulado</strong> (línea principal).</li>
+          <li><strong>Aportaciones totales</strong> (línea discontinua).</li>
+          <li><strong>Intereses acumulados</strong> (línea de crecimiento real).</li>
+        </ul>
+        Así podrás distinguir visualmente cuándo los intereses componen tu ahorro.
+      </p>
+    </div>
+
+    <footer style="margin-top:20px;">
+      <a href="index.html" class="privacy-link">← Volver al simulador</a>
+    </footer>
+  </div>
+</body>
+</html>
