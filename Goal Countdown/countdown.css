@@ -1,0 +1,74 @@
+/* ── Time Goal Countdown ── */
+.countdown-form {
+    margin-bottom: 20px;
+    text-align: left;
+  }
+  .countdown-form .form-group {
+    margin-bottom: 15px;
+  }
+  .countdown-form label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  .countdown-form input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background-color: var(--input-bg);
+    color: var(--text-color);
+  }
+  .countdown-form button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: var(--accent-color);
+    color: var(--bg-color);
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .countdown-form button:hover {
+    background-color: #9a67ea;
+  }
+  
+  .countdown-display {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+  }
+  .time-segment {
+    text-align: center;
+  }
+  .time-segment span {
+    font-size: 2.5rem;
+    font-weight: 600;
+    display: block;
+  }
+  .time-segment div {
+    font-size: 0.9rem;
+  }
+  
+  #goal-label {
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+    font-weight: 500;
+  }
+  #reset-btn {
+    margin-top: 10px;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: var(--accent-color);
+    color: var(--bg-color);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  #reset-btn:hover {
+    background-color: #9a67ea;
+  }
+  

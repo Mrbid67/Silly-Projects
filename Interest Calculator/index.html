@@ -1,75 +1,79 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Simulador de Interés Bancario</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="../css/global.css" />
+  <link rel="stylesheet" href="interest.css" />
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3094468457315724"
-     crossorigin="anonymous"></script>
+    crossorigin="anonymous"></script>
 </head>
+
 <body>
   <div class="container">
     <h1>📈 Simulador de Interés 📉</h1>
 
-   
+
     <div class="inputs">
-        <!-- ... tus campos de input (principal, interés, etc.) ... -->
-        <div class="form-group">
-          <label for="principal">Importe principal:</label>
-          <input type="number" id="principal" placeholder="Ej. 1000" step="0.01" />
-        </div>
-        <div class="form-group">
-          <label for="interest">Tipo de interés anual (%):</label>
-          <input type="number" id="interest" placeholder="Ej. 1.5" step="0.01" />
-        </div>
-        <div class="form-group">
-          <label for="compounding">Frecuencia de capitalización:</label>
-          <select id="compounding">
-            <option value="365">Diaria</option>
-            <option value="12">Mensual</option>
-            <option value="4">Trimestral</option>
-            <option value="2">Semestral</option>
-            <option value="1">Anual</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="monthly-contrib">Aportación mensual:</label>
-          <input type="number" id="monthly-contrib" placeholder="Ej. 100" step="0.01" />
-        </div>
-        <div class="form-group">
-          <label for="years">
-            Periodo de simulación (años): <span id="years-value">1</span>
-          </label>
-          <input type="range" id="years" min="1" max="10" value="1" />
-        </div>
+      <!-- ... tus campos de input (principal, interés, etc.) ... -->
+      <div class="form-group">
+        <label for="principal">Importe principal:</label>
+        <input type="number" id="principal" placeholder="Ej. 1000" step="0.01" />
       </div>
-  
-      <div class="stats" id="results" style="display:none; margin-top:20px;">
-        <div id="interest-earned">💰 Interés total: €0,00</div>
-        <div id="total-balance">💰 Saldo final: €0,00</div>
-        <hr />
-        <div id="interest-year">💸 Interés anual promedio: €0,00</div>
-        <div id="interest-month">💸 Interés mensual promedio: €0,00</div>
-        <div id="interest-day">💸 Interés diario promedio: €0,00</div>
+      <div class="form-group">
+        <label for="interest">Tipo de interés anual (%):</label>
+        <input type="number" id="interest" placeholder="Ej. 1.5" step="0.01" />
       </div>
-  
-      <!-- Gráfico de evolución del saldo -->
-      <canvas id="growthChart" style="max-width:100%; margin-top:20px;"></canvas>
-      <br>
-      <footer>
-        <a href="privacy.html" class="privacy-link">Privacy Policy</a>
-        &nbsp;|&nbsp;
-        <a href="help.html" class="privacy-link">Ayuda</a>
-      </footer>
-      
+      <div class="form-group">
+        <label for="compounding">Frecuencia de capitalización:</label>
+        <select id="compounding">
+          <option value="365">Diaria</option>
+          <option value="12">Mensual</option>
+          <option value="4">Trimestral</option>
+          <option value="2">Semestral</option>
+          <option value="1">Anual</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="monthly-contrib">Aportación mensual:</label>
+        <input type="number" id="monthly-contrib" placeholder="Ej. 100" step="0.01" />
+      </div>
+      <div class="form-group">
+        <label for="years">
+          Periodo de simulación (años): <span id="years-value">1</span>
+        </label>
+        <input type="range" id="years" min="1" max="10" value="1" />
+      </div>
     </div>
-    
-  
-    <!-- Chart.js desde CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="simulador.js"></script>
-    
-  </body>
-  </html>
+
+    <div class="stats" id="results" style="display:none; margin-top:20px;">
+      <div id="interest-earned">💰 Interés total: €0,00</div>
+      <div id="total-balance">💰 Saldo final: €0,00</div>
+      <hr />
+      <div id="interest-year">💸 Interés anual promedio: €0,00</div>
+      <div id="interest-month">💸 Interés mensual promedio: €0,00</div>
+      <div id="interest-day">💸 Interés diario promedio: €0,00</div>
+    </div>
+
+    <!-- Gráfico de evolución del saldo -->
+    <canvas id="growthChart" style="max-width:100%; margin-top:20px;"></canvas>
+    <br>
+    <footer>
+      <a href="privacy.html" class="privacy-link">Privacy Policy</a>
+      &nbsp;|&nbsp;
+      <a href="help.html" class="privacy-link">Ayuda</a>
+    </footer>
+
+  </div>
+
+
+  <!-- Chart.js desde CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="simulador.js"></script>
+
+</body>
+
+</html>

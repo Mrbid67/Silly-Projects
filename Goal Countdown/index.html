@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>⏳ Time Goal Countdown</title>
+  <meta name="description"
+    content="Set a goal date and countdown in real time. Perfect for tracking deadlines, vacations, launches, and more.">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/global.css" />
+  <link rel="stylesheet" href="countdown.css" />
+</head>
+
+<body>
+  <div class="container">
+    <h1>⏳ Time Goal Countdown</h1>
+
+    <form id="goal-form" class="countdown-form">
+      <div class="form-group">
+        <label for="goal-name">Goal Name:</label>
+        <input type="text" id="goal-name" placeholder="E.g. Vacation, Product Launch" required />
+      </div>
+      <div class="form-group">
+        <label for="goal-date">Target Date & Time:</label>
+        <input type="datetime-local" id="goal-date" required />
+      </div>
+      <button type="submit">Start Countdown</button>
+    </form>
+
+    <div id="countdown" class="countdown-display" style="display:none;">
+      <div class="time-segment">
+        <span id="days">0</span>
+        <div>Days</div>
+      </div>
+      <div class="time-segment">
+        <span id="hours">00</span>
+        <div>Hours</div>
+      </div>
+      <div class="time-segment">
+        <span id="minutes">00</span>
+        <div>Minutes</div>
+      </div>
+      <div class="time-segment">
+        <span id="seconds">00</span>
+        <div>Seconds</div>
+      </div>
+      <p id="goal-label"></p>
+      <button id="reset-btn">Reset</button>
+    </div>
+  </div>
+
+  <script src="countdown.js"></script>
+</body>
+
+</html>
